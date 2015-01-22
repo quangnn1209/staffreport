@@ -3,40 +3,32 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-	<display-name>School</display-name>
+	<display-name>StaffReport</display-name>
 	<welcome-file-list>
 		<welcome-file>pages/index.jsp</welcome-file>
 	</welcome-file-list>
-	<servlet>
-		<description></description>
-		<display-name>UserServlet</display-name>
-		<servlet-name>UserServlet</servlet-name>
-		<servlet-class>org.school.servlets.UserServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>UserServlet</servlet-name>
-		<url-pattern>/UserServlet</url-pattern>
-	</servlet-mapping>
 	
 	<servlet>
-		<description></description>
-		<display-name>TimetableScheduleServlet</display-name>
-		<servlet-name>TimetableScheduleServlet</servlet-name>
-		<servlet-class>org.school.servlets.TimetableScheduleServlet</servlet-class>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>
+                       org.springframework.web.servlet.DispatcherServlet
+                </servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
+ 
 	<servlet-mapping>
-		<servlet-name>TimetableScheduleServlet</servlet-name>
-		<url-pattern>/TimetableScheduleServlet</url-pattern>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<servlet>
-		<description></description>
-		<display-name>AuthenticationServlet</display-name>
-		<servlet-name>AuthenticationServlet</servlet-name>
-		<servlet-class>org.school.servlets.AuthenticationServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AuthenticationServlet</servlet-name>
-		<url-pattern>/AuthenticationServlet</url-pattern>
-	</servlet-mapping>
+ 
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+	</context-param>
+ 
+	<listener>
+		<listener-class>
+                      org.springframework.web.context.ContextLoaderListener
+                </listener-class>
+	</listener>
 </web-app>

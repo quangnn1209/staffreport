@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="org.school.persisted.TimetableSchedule" table="timetable_schedule"
-		catalog="school">
+	<class name="com.seta.staffreport.persisted.TimetableSchedule" table="timetable_schedule"
+		catalog="staffreport">
 		<id name="id" type="long">
 			<column name="id" />
 			<generator class="identity" />
@@ -16,13 +16,13 @@
 			<key>
 				<column name="ts_id" />
 			</key>
-			<one-to-many class="org.school.persisted.Class" />
+			<one-to-many class="com.seta.staffreport.persisted.Class" />
 		</bag>
 		<bag name="exams" table="exam" inverse="true" lazy="true" fetch="select">
 			<key>
 				<column name="ts_id" />
 			</key>
-			<one-to-many class="org.school.persisted.Exam" />
+			<one-to-many class="com.seta.staffreport.persisted.Exam" />
 		</bag>
 	</class>
 </hibernate-mapping>

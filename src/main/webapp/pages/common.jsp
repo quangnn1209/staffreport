@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>School</title>
+<title>StaffReport</title>
 <link rel='stylesheet' href='./css/fullcalendar.css' />
 <link rel='stylesheet' href='./css/style.css' />
 <link rel='stylesheet' href='./css/bootstrap.css' />
