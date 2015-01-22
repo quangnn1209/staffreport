@@ -4,26 +4,12 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <!-- Define tile for tax form -->
-    <definition name="taxForm" template="/pages/html/common/layout.jsp">
-        <put-attribute name="title" value="Tax Form System!!" />
-      	<put-attribute name="body" value="/pages/html/castlive/taxForm.jsp" />
+    <definition name="staffreport" template="/pages/layout.jsp">
+        <put-attribute name="title" value="Staff Report" />
+      	<put-attribute name="body" value="/pages/taxForm.jsp" />
     </definition>
     
-    <definition name="f110_110_110_会場結果" template="/pages/html/castlive/f110_110_110_会場結果.jsp">
-    </definition>
-    
-    <definition name="f110_210_110_セリ結果入力" template="/pages/html/common/layout.jsp">
-      	<put-attribute name="body" value="/pages/html/castlive/f110_210_110_セリ結果入力.jsp" />
-    </definition>
-    
-    <definition name="f110_410_110_予算登録" template="/pages/html/common/layout.jsp">
-      	<put-attribute name="body" value="/pages/html/castlive/f110_410_110_予算登録.jsp" />
-    </definition>
-    
-    <definition name="f110_310_110_出品取消メンテナンス" template="/pages/html/common/layout.jsp">
-      	<put-attribute name="body" value="/pages/html/castlive/f110_310_110_出品取消メンテナンス.jsp" />
-    </definition>
-    
-    <definition name="f110_110_120_会場結果_コーナー別" template="/pages/html/castlive/f110_110_120_会場結果_コーナー別.jsp">
+    <definition name="index" template="/pages/layout.jsp">
+      	<put-attribute name="body" value="/pages/index.jsp" />
     </definition>
 </tiles-definitions>

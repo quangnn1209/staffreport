@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
-	@RequestMapping(value="/",method = RequestMethod.GET)
-	public String mainFunction(){
-		return "login";
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String actionMain() {
+		System.out.println("mainFunction..");
+		return "index";
 	}
-	@RequestMapping(value="home",method = RequestMethod.POST)
-	public String homeFunction(){
+
+	@RequestMapping(value = "home", method = RequestMethod.POST)
+	public String actionHome() {
+		System.out.println("homeFunction..");
 		return "home";
 	}
 }
