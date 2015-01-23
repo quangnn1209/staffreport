@@ -12,16 +12,18 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.seta.staffreport.hibernate.HibernateUtility;
-import com.seta.staffreport.persisted.User;
+import com.seta.staffreport.persisted.Employees;
 
-public class UserHelper {
-	public static User getPersistantObject(User user) {
+public class EmployeeHelper {
+	public static Employees getPersistantObject(Employees Employees) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory().openSession();
+			hibernateSession = HibernateUtility.getSessionFactory()
+					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			user = (User) hibernateSession.get(User.class, user.getId());
+			Employees = (Employees) hibernateSession.get(Employees.class,
+					Employees.getEmpId());
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -30,17 +32,22 @@ public class UserHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return user;
+		return Employees;
 	}
 
-	public static User doLogin(User user) {
+	public static Employees doLogin(Employees Employees) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory().openSession();
+			hibernateSession = HibernateUtility.getSessionFactory()
+					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			user = (User) hibernateSession.createCriteria(User.class).add(Restrictions.eq("email", user.getEmail()))
-					.add(Restrictions.eq("password", user.getPassword())).uniqueResult();
+			Employees = (Employees) hibernateSession
+					.createCriteria(Employees.class)
+					.add(Restrictions.eq("email", Employees.getEmpId()))
+					// .add(Restrictions.eq("password",
+					// Employees.getPassword()))
+					.uniqueResult();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -49,16 +56,17 @@ public class UserHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return user;
+		return Employees;
 	}
 
-	public static long saveOrUpdate(User user) {
+	public static long saveOrUpdate(Employees Employees) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory().openSession();
+			hibernateSession = HibernateUtility.getSessionFactory()
+					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			hibernateSession.saveOrUpdate(user);
+			hibernateSession.saveOrUpdate(Employees);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -67,18 +75,20 @@ public class UserHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return user.getId();
+		return Employees.getEmpId();
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<User> getAllUsers() {
+	public static List<Employees> getAllEmployeess() {
 		Session hibernateSession = null;
 		Transaction transaction = null;
-		List<User> objectList = new ArrayList<User>();
+		List<Employees> objectList = new ArrayList<Employees>();
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory().openSession();
+			hibernateSession = HibernateUtility.getSessionFactory()
+					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			objectList = hibernateSession.createCriteria(User.class).list();
+			objectList = hibernateSession.createCriteria(Employees.class)
+					.list();
 			transaction.commit();
 		} catch (HibernateException he) {
 			if (transaction != null)
@@ -88,14 +98,18 @@ public class UserHelper {
 		return objectList;
 	}
 
-	public static void delete(User user) {
+	public static void delete(Employees Employees) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory().openSession();
+			hibernateSession = HibernateUtility.getSessionFactory()
+					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			user = (User) hibernateSession.createCriteria(User.class).add(Restrictions.eq("id", user.getId())).uniqueResult();
-			hibernateSession.delete(user);
+			Employees = (Employees) hibernateSession
+					.createCriteria(Employees.class)
+					.add(Restrictions.eq("id", Employees.getEmpId()))
+					.uniqueResult();
+			hibernateSession.delete(Employees);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)

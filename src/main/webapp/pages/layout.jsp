@@ -11,28 +11,18 @@
 <title>
 
 <tiles:insertAttribute name="title" ignore="true" /></title>
-<link rel="shortcut icon" href="<c:url value="/pages/images/favicon.ico"></c:url>">
+<link rel="shortcut icon" href="<c:url value="/images/favicon.ico"></c:url>">
 
 <!-- Style css -->
-<link rel="stylesheet" type="text/css" href="<c:url value="/pages/css/bootstrap/bootstrap.css"></c:url>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/pages/css/customize.css"></c:url>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/pages/css/jquery/ui/jquery-ui.css"></c:url>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/pages/css/bootstrap/bootstrap-combobox.css"></c:url>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/pages/css/jquery/datatable/jquery.dataTables.css"></c:url>">
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.css.map">
+<link rel="stylesheet" type="text/css" href="./css/style.css">
 
 <!-- Script js -->
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/jquery/jquery.js" />"></script>
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/jquery/jquery.maskMoney.js"></c:url>"></script>
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/jquery/jquery-ui.js"></c:url>"></script>
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/jquery/jquery.blockUI.js" />"></script>
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/jquery/jquery.dataTables.min.js"></c:url>"></script>
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/bootstrap/bootstrap.min.js"></c:url>"></script>
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/bootstrap/bootstrap-combobox.js"></c:url>"></script>
-<script type="text/javascript" charset="utf8" src="<c:url value="/pages/js/controller/common.js"></c:url>"></script>
+<script type="text/javascript" charset="utf8" src="./javascript/lib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" charset="utf8" src="./javascript/lib/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-</script>
-	
+
 </head>
 <body style="background: #0D5D97;">
 	<tiles:insertAttribute name="body" />

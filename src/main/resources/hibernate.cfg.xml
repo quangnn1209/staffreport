@@ -35,9 +35,12 @@
 		<property name="hibernate.c3p0.idle_test_period">3000</property>
 
 
-		<mapping resource="Class.hbm.xml" />
-		<mapping resource="Exam.hbm.xml" />
-		<mapping resource="User.hbm.xml" />
-		<mapping resource="TimetableSchedule.hbm.xml" />
+		<mapping resource="Admin.hbm.xml" />
+		<mapping resource="Division.hbm.xml" />
+		<mapping resource="Employeehistory.hbm.xml" />
+		<mapping resource="Employees.hbm.xml" />
+		<mapping resource="hibernate.cfg.xml" />
+		<mapping resource="Team.hbm.xml" />
+		<mapping resource="Test.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
