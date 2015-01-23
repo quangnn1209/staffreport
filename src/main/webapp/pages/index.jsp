@@ -6,9 +6,6 @@
 <form action="doLogin" method="post" class="form-inline">
 	<table  class="table table-hover">
 		<tr>
-			<th colspan="2">Sign in form</th>
-		</tr>
-		<tr>
 			<th>User name</th>
 			<td> <input type="text" maxlength="50" name="username"/> </td>
 		</tr>

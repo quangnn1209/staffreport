@@ -14,3 +14,13 @@ div.header{
 div.body{
 	margin-top: 50px;
 }
+
+.edit-row-btn{
+	cursor: pointer;
+}
+
+.del-row-btn{
+	cursor: pointer;
+}
+
+.no-close .ui-dialog-titlebar-close {display: none }

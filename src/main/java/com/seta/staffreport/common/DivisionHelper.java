@@ -3,27 +3,24 @@ package com.seta.staffreport.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.seta.staffreport.hibernate.HibernateUtility;
-import com.seta.staffreport.persisted.Employees;
+import com.seta.staffreport.persisted.Division;
 
-public class EmployeeHelper {
-	public static Employees getPersistantObject(Employees Employees) {
+public class DivisionHelper {
+	public static Division getPersistantObject(Division Division) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			Employees = (Employees) hibernateSession.get(Employees.class,
-					Employees.getEmpId());
-			Hibernate.initialize(Employees.getDivision());
-			Hibernate.initialize(Employees.getTeam());
+			Division = (Division) hibernateSession.get(Division.class,
+					Division.getDivisionId());
 
 			transaction.commit();
 		} catch (Exception e) {
@@ -33,17 +30,17 @@ public class EmployeeHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return Employees;
+		return Division;
 	}
 
-	public static long saveOrUpdate(Employees Employees) {
+	public static long saveOrUpdate(Division Division) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			hibernateSession.saveOrUpdate(Employees);
+			hibernateSession.saveOrUpdate(Division);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -52,20 +49,19 @@ public class EmployeeHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return Employees.getEmpId();
+		return Division.getDivisionId();
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<Employees> getAllEmployeess() {
+	public static List<Division> getAllDivisions() {
 		Session hibernateSession = null;
 		Transaction transaction = null;
-		List<Employees> objectList = new ArrayList<Employees>();
+		List<Division> objectList = new ArrayList<Division>();
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			objectList = hibernateSession.createCriteria(Employees.class)
-					.list();
+			objectList = hibernateSession.createCriteria(Division.class).list();
 			transaction.commit();
 		} catch (HibernateException he) {
 			if (transaction != null)
@@ -75,18 +71,18 @@ public class EmployeeHelper {
 		return objectList;
 	}
 
-	public static void delete(Employees Employees) {
+	public static void delete(Division Division) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			Employees = (Employees) hibernateSession
-					.createCriteria(Employees.class)
-					.add(Restrictions.eq("id", Employees.getEmpId()))
+			Division = (Division) hibernateSession
+					.createCriteria(Division.class)
+					.add(Restrictions.eq("id", Division.getDivisionId()))
 					.uniqueResult();
-			hibernateSession.delete(Employees);
+			hibernateSession.delete(Division);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)

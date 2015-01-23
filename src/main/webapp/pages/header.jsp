@@ -25,14 +25,8 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="button" class="btn btn-default">Search</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text">Signed in as admin</p></li>
+        <li><p class="navbar-text">Signed in as ${sessionScope.admin.username}</p></li>
         <li><a href="doLogout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
