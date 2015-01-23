@@ -12,18 +12,18 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.seta.staffreport.hibernate.HibernateUtility;
-import com.seta.staffreport.persisted.Employees;
+import com.seta.staffreport.persisted.Admin;
 
-public class EmployeeHelper {
-	public static Employees getPersistantObject(Employees Employees) {
+public class AdminHelper {
+	public static Admin getPersistantObject(Admin Admin) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			Employees = (Employees) hibernateSession.get(Employees.class,
-					Employees.getEmpId());
+			Admin = (Admin) hibernateSession.get(Admin.class,
+					Admin.getAdminId());
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -32,17 +32,20 @@ public class EmployeeHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return Employees;
+		return Admin;
 	}
 
-	public static long saveOrUpdate(Employees Employees) {
+	public static Admin doLogin(Admin Admin) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			hibernateSession.saveOrUpdate(Employees);
+			Admin = (Admin) hibernateSession.createCriteria(Admin.class)
+					.add(Restrictions.eq("username", Admin.getUsername()))
+					.add(Restrictions.eq("password", Admin.getPassword()))
+					.uniqueResult();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -51,20 +54,38 @@ public class EmployeeHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return Employees.getEmpId();
+		return Admin;
+	}
+
+	public static long saveOrUpdate(Admin Admin) {
+		Session hibernateSession = null;
+		Transaction transaction = null;
+		try {
+			hibernateSession = HibernateUtility.getSessionFactory()
+					.openSession();
+			transaction = hibernateSession.beginTransaction();
+			hibernateSession.saveOrUpdate(Admin);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null)
+				transaction.rollback();
+			System.out.println("object not saved  - " + e.getMessage());
+		} finally {
+			hibernateSession.close();
+		}
+		return Admin.getAdminId();
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<Employees> getAllEmployeess() {
+	public static List<Admin> getAllAdmins() {
 		Session hibernateSession = null;
 		Transaction transaction = null;
-		List<Employees> objectList = new ArrayList<Employees>();
+		List<Admin> objectList = new ArrayList<Admin>();
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			objectList = hibernateSession.createCriteria(Employees.class)
-					.list();
+			objectList = hibernateSession.createCriteria(Admin.class).list();
 			transaction.commit();
 		} catch (HibernateException he) {
 			if (transaction != null)
@@ -74,18 +95,17 @@ public class EmployeeHelper {
 		return objectList;
 	}
 
-	public static void delete(Employees Employees) {
+	public static void delete(Admin Admin) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory()
 					.openSession();
 			transaction = hibernateSession.beginTransaction();
-			Employees = (Employees) hibernateSession
-					.createCriteria(Employees.class)
-					.add(Restrictions.eq("id", Employees.getEmpId()))
+			Admin = (Admin) hibernateSession.createCriteria(Admin.class)
+					.add(Restrictions.eq("id", Admin.getAdminId()))
 					.uniqueResult();
-			hibernateSession.delete(Employees);
+			hibernateSession.delete(Admin);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -94,5 +114,24 @@ public class EmployeeHelper {
 		} finally {
 			hibernateSession.close();
 		}
+	}
+
+	public static String md5(String input) {
+		String md5 = null;
+		if (null == input)
+			return null;
+		try {
+			// Create MessageDigest object for MD5
+			MessageDigest digest = MessageDigest.getInstance("MD5");
+
+			// Update input string in message digest
+			digest.update(input.getBytes(), 0, input.length());
+
+			// Converts message digest value in base 16 (hex)
+			md5 = new BigInteger(1, digest.digest()).toString(16);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return md5;
 	}
 }

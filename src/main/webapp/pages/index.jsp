@@ -9,8 +9,8 @@
 			<th colspan="2">Sign in form</th>
 		</tr>
 		<tr>
-			<th>Email</th>
-			<td> <input type="text" maxlength="50" name="email"/> </td>
+			<th>User name</th>
+			<td> <input type="text" maxlength="50" name="username"/> </td>
 		</tr>
 		<tr>
 			<th>Password</th>

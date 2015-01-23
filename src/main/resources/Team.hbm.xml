@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 23, 2015 10:32:31 AM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Jan 23, 2015 10:57:24 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.seta.staffreport.Team" table="team" catalog="staffreport">
+    <class name="com.seta.staffreport.persisted.Team" table="team" catalog="staffreport">
         <id name="teamId" type="java.lang.Integer">
             <column name="team_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="division" class="com.seta.staffreport.Division" fetch="select">
+        <many-to-one name="division" class="com.seta.staffreport.persisted.Division" fetch="select">
             <column name="division_id" not-null="true" />
         </many-to-one>
         <property name="teamName" type="string">
@@ -24,7 +24,7 @@
             <key>
                 <column name="team_id" />
             </key>
-            <one-to-many class="com.seta.staffreport.Employees" />
+            <one-to-many class="com.seta.staffreport.persisted.Employees" />
         </set>
     </class>
 </hibernate-mapping>

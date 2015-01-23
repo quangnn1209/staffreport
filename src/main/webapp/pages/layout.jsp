@@ -21,10 +21,14 @@
 <!-- Script js -->
 <script type="text/javascript" charset="utf8" src="./javascript/lib/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" charset="utf8" src="./javascript/lib/bootstrap.min.js"></script>
-
-
 </head>
-<body style="background: #0D5D97;">
+<div class="header">
+	<tiles:insertAttribute name="header" ignore="true"/>
+</div>
+<div class="body">
 	<tiles:insertAttribute name="body" />
-</body>
+</div>
+<div class="footer">
+	<tiles:insertAttribute name="footer" ignore="true"/>
+</div>
 </html>

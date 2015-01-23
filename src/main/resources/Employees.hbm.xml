@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 23, 2015 10:32:31 AM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Jan 23, 2015 10:57:24 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.seta.staffreport.Employees" table="employees" catalog="staffreport">
+    <class name="com.seta.staffreport.persisted.Employees" table="employees" catalog="staffreport">
         <id name="empId" type="java.lang.Integer">
             <column name="emp_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="division" class="com.seta.staffreport.Division" fetch="select">
+        <many-to-one name="division" class="com.seta.staffreport.persisted.Division" fetch="select">
             <column name="division_id" />
         </many-to-one>
-        <many-to-one name="team" class="com.seta.staffreport.Team" fetch="select">
+        <many-to-one name="team" class="com.seta.staffreport.persisted.Team" fetch="select">
             <column name="team_id" />
         </many-to-one>
         <property name="empFullName" type="string">
@@ -42,13 +42,13 @@
             <key>
                 <column name="emp_id" not-null="true" />
             </key>
-            <one-to-many class="com.seta.staffreport.Employeehistory" />
+            <one-to-many class="com.seta.staffreport.persisted.Employeehistory" />
         </set>
         <set name="admins" table="admin" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="emp_id" />
             </key>
-            <one-to-many class="com.seta.staffreport.Admin" />
+            <one-to-many class="com.seta.staffreport.persisted.Admin" />
         </set>
     </class>
 </hibernate-mapping>

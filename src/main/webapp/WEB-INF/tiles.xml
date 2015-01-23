@@ -12,4 +12,16 @@
     <definition name="index" template="/pages/layout.jsp">
       	<put-attribute name="body" value="/pages/index.jsp" />
     </definition>
+    
+    <definition name="home" template="/pages/layout.jsp">
+    	<put-attribute name="header" value="/pages/header.jsp" />
+      	<put-attribute name="body" value="/pages/home.jsp" />
+      	<put-attribute name="footer" value="/pages/footer.jsp" />
+    </definition>
+    
+    <definition name="employees" template="/pages/layout.jsp">
+    	<put-attribute name="header" value="/pages/header.jsp" />
+      	<put-attribute name="body" value="/pages/employees.jsp" />
+      	<put-attribute name="footer" value="/pages/footer.jsp" />
+    </definition>
 </tiles-definitions>

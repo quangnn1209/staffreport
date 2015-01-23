@@ -12,7 +12,7 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping(value = "home", method = RequestMethod.POST)
+	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String actionHome() {
 		System.out.println("homeFunction..");
 		return "home";
