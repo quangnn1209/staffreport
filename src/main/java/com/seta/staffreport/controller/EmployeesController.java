@@ -23,6 +23,11 @@ public class EmployeesController {
 		return mav;
 	}
 
+	@RequestMapping(value = "goEmployeeMain", method = RequestMethod.GET)
+	public String goEmployeeMain() {
+		return "employeeMain";
+	}
+
 	@RequestMapping(value = "getEmployeeById", method = RequestMethod.GET)
 	public ModelAndView getEmployeeById(Integer id) {
 		ModelAndView mav = new ModelAndView("employee");
@@ -39,7 +44,7 @@ public class EmployeesController {
 		if (employees.getJoinDate() == null) {
 			employees.setJoinDate(new Date());
 		}
-		if(employees.getEmpFullName() == null || employees.getEmpFullName().isEmpty()){
+		if (employees.getEmpFullName() == null || employees.getEmpFullName().isEmpty()) {
 			return "Please fill up all required fields!";
 		}
 

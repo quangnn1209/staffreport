@@ -18,6 +18,7 @@
 			  data: JSON.stringify($("#employee-form").serializeObject())			  
 			}).always(function(data) {
 				$.jGrowl(data.responseText);
+				reloadEmployeeList();
 			});
 		});
 	});
@@ -40,18 +41,18 @@
 		<td><input type="text" class="form-control" name="empPhone" value="${emp.empPhone}"></td>
 		<td><input type="text" class="form-control" name="empContact" value="${emp.empContact}"></td>
 		<td><input type="text" class="form-control" name="empStatus" value="${emp.empStatus}"></td>
-		<td><input type="text" class="form-control required-field" name="joinDate" value="${emp.joinDate}"></td>
+		<td><input type="text" class="form-control required-field" name="joinDate" value="${emp.joinDate}" readonly="readonly"></td>
 		<td><input type="text" class="form-control" name="empSkills" value="${emp.empSkills}"></td>
 		<td><input type="text" class="form-control" name="empAvatar" value="${emp.empAvatar}"></td>
 		<td>
-			<select name="division.divisionId">
+			<select name="division[divisionId]">
 				<c:forEach items="${divisions }" var="division">
 					<option value="${division.divisionId}" ${emp.division.divisionName eq division.divisionName ? 'selected="selected"':'' }>${division.divisionName}</option>
 				</c:forEach>
 			</select>
 		</td>
 		<td>
-			<select name="team.teamId">
+			<select name="team[teamId]">
 				<c:forEach items="${teams}" var="team">
 					<option value="${team.teamId}" ${emp.team.teamName eq team.teamName ? 'selected="selected"':'' }>${team.teamName}</option>
 				</c:forEach>

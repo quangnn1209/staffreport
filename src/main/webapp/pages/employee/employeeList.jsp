@@ -27,22 +27,8 @@
 				});
 			}			
 		});
-		
-		$("#add-employee").on("click", function(){
-			$.ajax({
-			  url: "getEmployeeById"
-			}).done(function(html) {
-				openDialog("<div>"+html+"</div>");
-			});
-		});
 	});
 </script>
-<form class="navbar-form navbar-left" role="search">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Type employee name or phone to search">
-  </div>
-  <button type="button" class="btn btn-default">Search</button>
-</form>
 <table class="table table-hover table-bordered">
 	<tr>
 		<th>No.</th>
@@ -74,4 +60,3 @@
 		</tr>
 	</c:forEach>
 </table>
-<button class="btn btn-default" type="button" id="add-employee">Add</button>

@@ -26,6 +26,7 @@
 <script type="text/javascript" charset="utf8" src="./javascript/lib/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf8" src="./javascript/lib/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf8" src="./javascript/lib/jquery.jgrowl.min.js"></script>
+<script type="text/javascript" charset="utf8" src="./javascript/lib/jquery.serialize-object.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -40,22 +41,6 @@
 		});
 	}
 
-	$.fn.serializeObject = function() {
-		var o = {};
-		var a = this.serializeArray();
-		$.each(a, function() {
-			if (o[this.name] !== undefined) {
-				if (!o[this.name].push) {
-					o[this.name] = [ o[this.name] ];
-				}
-				o[this.name].push(this.value.trim() || '');
-			} else {
-				o[this.name] = this.value.trim() || '';
-			}
-		});
-		return o;
-	};
-	
 	function validateRequired(form){
 		var invalid = false;
 		$(form).find(".required-field").each(function(){
@@ -69,6 +54,15 @@
 		});
 		
 		return invalid;
+	}
+	
+	function getListObject(url, el, target){
+		$.ajax({
+		  url: url,
+		  data: JSON.stringify($(el).serializeObject())
+		}).done(function(html) {
+			$(target).html(html);
+		});
 	}
 </script>
 </head>
