@@ -1,6 +1,6 @@
 package com.seta.staffreport.persisted;
 
-// Generated Jan 23, 2015 10:32:31 AM by Hibernate Tools 3.4.0.CR1
+// Generated Jan 27, 2015 2:55:26 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Employees implements java.io.Serializable {
 
 	private Integer empId;
-	private Division division;
 	private Team team;
+	private Division division;
 	private String empFullName;
 	private Date joinDate;
 	private String empSkills;
@@ -31,21 +31,15 @@ public class Employees implements java.io.Serializable {
 	public Employees() {
 	}
 
-	public Employees(Integer empId) {
-		super();
-		this.empId = empId;
-	}
-
 	public Employees(String empFullName, Date joinDate) {
 		this.empFullName = empFullName;
 		this.joinDate = joinDate;
 	}
 
-	public Employees(Division division, Team team, String empFullName, Date joinDate, String empSkills,
-			Date empBirthday, String empPhone, String empContact, String empAvatar, Integer empStatus,
-			Set employeehistories, Set admins) {
-		this.division = division;
+	public Employees(Team team, Division division, String empFullName, Date joinDate, String empSkills, Date empBirthday, String empPhone, String empContact,
+			String empAvatar, Integer empStatus, Set employeehistories, Set admins) {
 		this.team = team;
+		this.division = division;
 		this.empFullName = empFullName;
 		this.joinDate = joinDate;
 		this.empSkills = empSkills;
@@ -58,6 +52,10 @@ public class Employees implements java.io.Serializable {
 		this.admins = admins;
 	}
 
+	public Employees(Integer id) {
+		this.empId = id;
+	}
+
 	public Integer getEmpId() {
 		return this.empId;
 	}
@@ -66,20 +64,20 @@ public class Employees implements java.io.Serializable {
 		this.empId = empId;
 	}
 
-	public Division getDivision() {
-		return this.division;
-	}
-
-	public void setDivision(Division division) {
-		this.division = division;
-	}
-
 	public Team getTeam() {
 		return this.team;
 	}
 
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+
+	public Division getDivision() {
+		return this.division;
+	}
+
+	public void setDivision(Division division) {
+		this.division = division;
 	}
 
 	public String getEmpFullName() {
