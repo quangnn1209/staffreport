@@ -10,17 +10,21 @@
 				openDialog("<div>"+html+"</div>");
 			});
 		});
+		
+		$("#search-employee").on("click", function(){
+			reloadEmployeeList();
+		});
 	});
 	
 	function reloadEmployeeList(){
-		getListObject("getEmployees",$("#search-employee-form"),$("#employee-list"));
+		getListObject("getEmployees", $("#search-employee-form"), $("#employee-list"));
 	}
 </script>
 <form class="navbar-form navbar-left" role="search" id="search-employee-form">
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Type employee name or phone to search">
+    <input type="text" class="form-control" placeholder="Type employee name to search" size="35" name="empFullName">
   </div>
-  <button type="button" class="btn btn-default">Search</button>
+  <button type="button" class="btn btn-default" id="search-employee">Search</button>
 </form>
 <div id="employee-list">
 </div>

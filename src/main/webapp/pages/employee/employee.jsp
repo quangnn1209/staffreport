@@ -21,6 +21,10 @@
 				reloadEmployeeList();
 			});
 		});
+		
+		$(".upload-file-btn").on("click", function(){
+			uploadFile($(this).parents("form:first"));
+		});
 	});
 </script>
 <form action="updateEmployee" method="post" id="employee-form">
@@ -43,7 +47,10 @@
 		<td><input type="text" class="form-control" name="empStatus" value="${emp.empStatus}"></td>
 		<td><input type="text" class="form-control required-field" name="joinDate" value="${emp.joinDate}" readonly="readonly"></td>
 		<td><input type="text" class="form-control" name="empSkills" value="${emp.empSkills}"></td>
-		<td><input type="text" class="form-control" name="empAvatar" value="${emp.empAvatar}"></td>
+		<td>
+			<input type="file" name="content"/>
+			<button type="button" class="btn btn-default upload-file-btn">Upload</button>
+		</td>
 		<td>
 			<select name="division[divisionId]">
 				<c:forEach items="${divisions }" var="division">

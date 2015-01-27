@@ -3,10 +3,12 @@ package com.seta.staffreport.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.seta.staffreport.hibernate.HibernateUtility;
@@ -17,11 +19,9 @@ public class EmployeeHelper {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory()
-					.openSession();
+			hibernateSession = HibernateUtility.getSessionFactory().openSession();
 			transaction = hibernateSession.beginTransaction();
-			Employees = (Employees) hibernateSession.get(Employees.class,
-					Employees.getEmpId());
+			Employees = (Employees) hibernateSession.get(Employees.class, Employees.getEmpId());
 			Hibernate.initialize(Employees.getDivision());
 			Hibernate.initialize(Employees.getTeam());
 
@@ -40,8 +40,7 @@ public class EmployeeHelper {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory()
-					.openSession();
+			hibernateSession = HibernateUtility.getSessionFactory().openSession();
 			transaction = hibernateSession.beginTransaction();
 			hibernateSession.saveOrUpdate(Employees);
 			transaction.commit();
@@ -61,11 +60,29 @@ public class EmployeeHelper {
 		Transaction transaction = null;
 		List<Employees> objectList = new ArrayList<Employees>();
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory()
-					.openSession();
+			hibernateSession = HibernateUtility.getSessionFactory().openSession();
 			transaction = hibernateSession.beginTransaction();
-			objectList = hibernateSession.createCriteria(Employees.class)
-					.list();
+			objectList = hibernateSession.createCriteria(Employees.class).list();
+			transaction.commit();
+		} catch (HibernateException he) {
+			if (transaction != null)
+				transaction.rollback();
+			System.err.println(he.getMessage());
+		}
+		return objectList;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<Employees> searchEmployees(Employees employee) {
+		Session hibernateSession = null;
+		Transaction transaction = null;
+		List<Employees> objectList = new ArrayList<Employees>();
+		try {
+			hibernateSession = HibernateUtility.getSessionFactory().openSession();
+			transaction = hibernateSession.beginTransaction();
+			Criteria criteria = hibernateSession.createCriteria(Employees.class);
+			criteria.add(Restrictions.like("empFullName", employee.getEmpFullName(), MatchMode.ANYWHERE));
+			objectList = criteria.list();
 			transaction.commit();
 		} catch (HibernateException he) {
 			if (transaction != null)
@@ -79,13 +96,9 @@ public class EmployeeHelper {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
-			hibernateSession = HibernateUtility.getSessionFactory()
-					.openSession();
+			hibernateSession = HibernateUtility.getSessionFactory().openSession();
 			transaction = hibernateSession.beginTransaction();
-			Employees = (Employees) hibernateSession
-					.createCriteria(Employees.class)
-					.add(Restrictions.eq("id", Employees.getEmpId()))
-					.uniqueResult();
+			Employees = (Employees) hibernateSession.createCriteria(Employees.class).add(Restrictions.eq("id", Employees.getEmpId())).uniqueResult();
 			hibernateSession.delete(Employees);
 			transaction.commit();
 		} catch (Exception e) {

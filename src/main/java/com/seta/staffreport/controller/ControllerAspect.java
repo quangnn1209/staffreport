@@ -16,12 +16,9 @@ public class ControllerAspect {
 
 	@Around("execution(* com.seta.staffreport.controller.*.*(..))")
 	public Object beforeExecution(ProceedingJoinPoint point) throws Throwable {
-		HttpSession session = (HttpSession) RequestContextHolder
-				.currentRequestAttributes().resolveReference(
-						RequestAttributes.REFERENCE_SESSION);
+		HttpSession session = (HttpSession) RequestContextHolder.currentRequestAttributes().resolveReference(RequestAttributes.REFERENCE_SESSION);
 		System.out.println("Before: " + point.getSignature().getName());
-		if (!"doLogin".equals(point.getSignature().getName())
-				&& !"doLogout".equals(point.getSignature().getName())
+		if (!"doLogin".equals(point.getSignature().getName()) && !"doLogout".equals(point.getSignature().getName())
 				&& session.getAttribute(Constant.ADMIN_SESSION) == null) {
 			System.err.println("Dont have permission");
 			String signature = point.getSignature().toString();

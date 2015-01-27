@@ -16,10 +16,10 @@ import com.seta.staffreport.persisted.Employees;
 
 @Controller
 public class EmployeesController {
-	@RequestMapping(value = "getEmployees", method = RequestMethod.GET)
-	public ModelAndView getEmployees() {
+	@RequestMapping(value = "getEmployees", method = RequestMethod.POST)
+	public ModelAndView getEmployees(@RequestBody Employees employee) {
 		ModelAndView mav = new ModelAndView("employees");
-		mav.addObject("employees", EmployeeHelper.getAllEmployeess());
+		mav.addObject("employees", EmployeeHelper.searchEmployees(employee));
 		return mav;
 	}
 
@@ -39,7 +39,8 @@ public class EmployeesController {
 	}
 
 	@RequestMapping(value = "updateEmployee", method = RequestMethod.POST)
-	public @ResponseBody String updateEmployee(@RequestBody Employees employees) {
+	public @ResponseBody
+	String updateEmployee(@RequestBody Employees employees) {
 		// Validate data
 		if (employees.getJoinDate() == null) {
 			employees.setJoinDate(new Date());
@@ -56,7 +57,8 @@ public class EmployeesController {
 	}
 
 	@RequestMapping(value = "deleteEmployee", method = RequestMethod.POST)
-	public @ResponseBody String deleteEmployee(Integer id) {
+	public @ResponseBody
+	String deleteEmployee(Integer id) {
 		Employees employee = new Employees(id);
 		EmployeeHelper.delete(employee);
 		return "Delete employee succesful!";

@@ -1,6 +1,6 @@
 package com.seta.staffreport.persisted;
 
-// Generated Jan 23, 2015 10:32:31 AM by Hibernate Tools 3.4.0.CR1
+// Generated Jan 27, 2015 2:55:26 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
