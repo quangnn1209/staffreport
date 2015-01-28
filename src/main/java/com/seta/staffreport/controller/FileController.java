@@ -9,10 +9,10 @@ import com.seta.staffreport.persisted.File;
 
 @Controller
 public class FileController {
-	@RequestMapping(value = "uploadFile", method = RequestMethod.PUT)
+	@RequestMapping(value = "uploadFile", method = RequestMethod.POST)
 	public @ResponseBody
 	String uploadFile(File file) {
-		
+
 		return "";
 	}
 }

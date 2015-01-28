@@ -24,3 +24,8 @@ div.body{
 }
 
 .no-close .ui-dialog-titlebar-close {display: none }
+
+.bar {
+    height: 18px;
+    background: green;
+}

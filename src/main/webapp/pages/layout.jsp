@@ -27,7 +27,7 @@
 <script type="text/javascript" charset="utf8" src="./javascript/lib/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf8" src="./javascript/lib/jquery.jgrowl.min.js"></script>
 <script type="text/javascript" charset="utf8" src="./javascript/lib/jquery.serialize-object.js"></script>
-<script type="text/javascript" charset="utf8" src="./javascript/lib/jquery.fileupload-image.js"></script>
+<script type="text/javascript" charset="utf8" src="./javascript/lib/jquery.fileupload.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -69,18 +69,6 @@
 			$(target).html(html);
 		}).always(function(html){
 			$(target).html(html.responseText);
-		});
-	}
-	
-	function uploadFile(form){
-		$.ajax({
-		  url: "uploadFile",
-		  type: "PUT",
-		  contentType : 'application/json; charset=utf-8',
-		  dataType : 'json',
-		  data: JSON.stringify($(form).serializeObject())			  
-		}).always(function(data) {
-			$.jGrowl(data.responseText);
 		});
 	}
 </script>

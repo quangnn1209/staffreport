@@ -22,9 +22,21 @@
 			});
 		});
 		
-		$(".upload-file-btn").on("click", function(){
-			uploadFile($(this).parents("form:first"));
-		});
+		$('#fileupload').fileupload({
+	        dataType: 'json',
+	        done: function (e, data) {
+	            $.each(data.result.files, function (index, file) {
+	                $('<p/>').text(file.name).appendTo(document.body);
+	            });
+	        },
+	        progressall: function (e, data) {
+	            var progress = parseInt(data.loaded / data.total * 100, 10);
+	            $('#progress .bar').css(
+	                'width',
+	                progress + '%'
+	            );
+	        }
+	    });
 	});
 </script>
 <form action="updateEmployee" method="post" id="employee-form">
@@ -48,8 +60,10 @@
 		<td><input type="text" class="form-control required-field" name="joinDate" value="${emp.joinDate}" readonly="readonly"></td>
 		<td><input type="text" class="form-control" name="empSkills" value="${emp.empSkills}"></td>
 		<td>
-			<input type="file" name="content"/>
-			<button type="button" class="btn btn-default upload-file-btn">Upload</button>
+			<input id="fileupload" type="file" name="content" data-url="uploadFile">
+			<div id="progress">
+			    <div class="bar" style="width: 0%;"></div>
+			</div>
 		</td>
 		<td>
 			<select name="division[divisionId]">
