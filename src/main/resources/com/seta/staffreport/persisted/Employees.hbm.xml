@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 2, 2015 10:31:43 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.seta.staffreport.persisted.Employees" table="employees" catalog="staffreport">
+        <id name="empId" type="java.lang.Integer">
+            <column name="emp_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="division" class="com.seta.staffreport.persisted.Division" fetch="select">
+            <column name="division_id" />
+        </many-to-one>
+        <many-to-one name="team" class="com.seta.staffreport.persisted.Team" fetch="select">
+            <column name="team_id" />
+        </many-to-one>
+        <many-to-one name="image" class="com.seta.staffreport.persisted.Image" fetch="select">
+            <column name="image_id" />
+        </many-to-one>
+        <property name="empFullName" type="string">
+            <column name="emp_full_name" length="30" not-null="true" />
+        </property>
+        <property name="joinDate" type="date">
+            <column name="join_date" length="10" not-null="true" />
+        </property>
+        <property name="empSkills" type="string">
+            <column name="emp_skills" length="65535" />
+        </property>
+        <property name="empBirthday" type="date">
+            <column name="emp_birthday" length="10" />
+        </property>
+        <property name="empPhone" type="string">
+            <column name="emp_phone" length="20" />
+        </property>
+        <property name="empContact" type="string">
+            <column name="emp_contact" length="50" />
+        </property>
+        <property name="empAvatar" type="string">
+            <column name="emp_avatar" length="100" />
+        </property>
+        <property name="empStatus" type="java.lang.Integer">
+            <column name="emp_status" />
+        </property>
+        <set name="employeehistories" table="employeehistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="emp_id" not-null="true" />
+            </key>
+            <one-to-many class="com.seta.staffreport.persisted.Employeehistory" />
+        </set>
+        <set name="productivities" table="productivity" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="emp_id" />
+            </key>
+            <one-to-many class="com.seta.staffreport.persisted.Productivity" />
+        </set>
+        <set name="admins" table="admin" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="emp_id" />
+            </key>
+            <one-to-many class="com.seta.staffreport.persisted.Admin" />
+        </set>
+    </class>
+</hibernate-mapping>

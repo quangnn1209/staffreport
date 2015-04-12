@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 2, 2015 10:31:43 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.seta.staffreport.persisted.Team" table="team" catalog="staffreport">
+        <id name="teamId" type="java.lang.Integer">
+            <column name="team_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="division" class="com.seta.staffreport.persisted.Division" fetch="select">
+            <column name="division_id" not-null="true" />
+        </many-to-one>
+        <property name="teamName" type="string">
+            <column name="team_name" length="30" not-null="true" />
+        </property>
+        <property name="createDate" type="date">
+            <column name="create_date" length="10" not-null="true" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="end_date" length="10" />
+        </property>
+        <set name="employeeses" table="employees" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="team_id" />
+            </key>
+            <one-to-many class="com.seta.staffreport.persisted.Employees" />
+        </set>
+    </class>
+</hibernate-mapping>
