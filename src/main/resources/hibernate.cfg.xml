@@ -39,8 +39,10 @@
 		<mapping resource="Division.hbm.xml" />
 		<mapping resource="Employeehistory.hbm.xml" />
 		<mapping resource="Employees.hbm.xml" />
-		<mapping resource="hibernate.cfg.xml" />
+		<mapping resource="File.hbm.xml" />
+		<mapping resource="Image.hbm.xml" />
 		<mapping resource="Team.hbm.xml" />
 		<mapping resource="Test.hbm.xml" />
+		<mapping resource="Productivity.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

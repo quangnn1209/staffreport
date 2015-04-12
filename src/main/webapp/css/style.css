@@ -19,6 +19,10 @@ div.body{
 	cursor: pointer;
 }
 
+.cancel-row-btn{
+	cursor: pointer;
+}
+
 .del-row-btn{
 	cursor: pointer;
 }

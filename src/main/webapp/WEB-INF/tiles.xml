@@ -3,23 +3,20 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<!-- Define tile for tax form -->
-	<definition name="staffreport" template="/pages/layout.jsp">
-		<put-attribute name="title" value="Staff Report" />
-		<put-attribute name="body" value="/pages/taxForm.jsp" />
-	</definition>
-
 	<definition name="index" template="/pages/layout.jsp">
+		<put-attribute name="title" value="Login page" />
 		<put-attribute name="body" value="/pages/index.jsp" />
 	</definition>
 
 	<definition name="home" template="/pages/layout.jsp">
+		<put-attribute name="title" value="Welcome" />
 		<put-attribute name="header" value="/pages/header.jsp" />
 		<put-attribute name="body" value="/pages/home.jsp" />
 		<put-attribute name="footer" value="/pages/footer.jsp" />
 	</definition>
 
 	<definition name="employeeMain" template="/pages/layout.jsp">
+		<put-attribute name="title" value="Employee Page" />
 		<put-attribute name="header" value="/pages/header.jsp" />
 		<put-attribute name="body" value="/pages/employee/employeeMain.jsp" />
 		<put-attribute name="footer" value="/pages/footer.jsp" />
@@ -27,5 +24,11 @@
 	<definition name="employees" template="/pages/employee/employeeList.jsp">
 	</definition>
 	<definition name="employee" template="/pages/employee/employee.jsp">
+	</definition>
+	<definition name="productivities" template="/pages/productivity/productivityList.jsp">
+	</definition>
+	<definition name="goError" template="/pages/layout.jsp">
+		<put-attribute name="title" value="Error page" />
+		<put-attribute name="body" value="/pages/error.jsp" />
 	</definition>
 </tiles-definitions>

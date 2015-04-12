@@ -34,11 +34,11 @@
 		
 	});
 
-	function openDialog(el) {
+	function openDialog(el, width, height) {
 		$(el).dialog({
 			modal : true,
-			width : 1300,
-			height : 250,
+			width : width == undefined ? 1300:width,
+			height : height == undefined? 500:height,
 			resizable : false
 		});
 	}

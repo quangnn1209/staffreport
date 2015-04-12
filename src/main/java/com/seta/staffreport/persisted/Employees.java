@@ -1,6 +1,6 @@
 package com.seta.staffreport.persisted;
 
-// Generated Jan 27, 2015 2:55:26 PM by Hibernate Tools 3.4.0.CR1
+// Generated Jan 30, 2015 10:35:04 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -15,8 +15,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Employees implements java.io.Serializable {
 
 	private Integer empId;
-	private Team team;
 	private Division division;
+	private Team team;
+	private Image image;
 	private String empFullName;
 	private Date joinDate;
 	private String empSkills;
@@ -25,6 +26,7 @@ public class Employees implements java.io.Serializable {
 	private String empContact;
 	private String empAvatar;
 	private Integer empStatus;
+	private Set productivities = new HashSet(0);
 	private Set employeehistories = new HashSet(0);
 	private Set admins = new HashSet(0);
 
@@ -36,10 +38,12 @@ public class Employees implements java.io.Serializable {
 		this.joinDate = joinDate;
 	}
 
-	public Employees(Team team, Division division, String empFullName, Date joinDate, String empSkills, Date empBirthday, String empPhone, String empContact,
-			String empAvatar, Integer empStatus, Set employeehistories, Set admins) {
-		this.team = team;
+	public Employees(Division division, Team team, Image image, String empFullName, Date joinDate, String empSkills,
+			Date empBirthday, String empPhone, String empContact, String empAvatar, Integer empStatus,
+			Set productivities, Set employeehistories, Set admins) {
 		this.division = division;
+		this.team = team;
+		this.image = image;
 		this.empFullName = empFullName;
 		this.joinDate = joinDate;
 		this.empSkills = empSkills;
@@ -48,6 +52,7 @@ public class Employees implements java.io.Serializable {
 		this.empContact = empContact;
 		this.empAvatar = empAvatar;
 		this.empStatus = empStatus;
+		this.productivities = productivities;
 		this.employeehistories = employeehistories;
 		this.admins = admins;
 	}
@@ -64,6 +69,14 @@ public class Employees implements java.io.Serializable {
 		this.empId = empId;
 	}
 
+	public Division getDivision() {
+		return this.division;
+	}
+
+	public void setDivision(Division division) {
+		this.division = division;
+	}
+
 	public Team getTeam() {
 		return this.team;
 	}
@@ -72,12 +85,12 @@ public class Employees implements java.io.Serializable {
 		this.team = team;
 	}
 
-	public Division getDivision() {
-		return this.division;
+	public Image getImage() {
+		return this.image;
 	}
 
-	public void setDivision(Division division) {
-		this.division = division;
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 	public String getEmpFullName() {
@@ -142,6 +155,14 @@ public class Employees implements java.io.Serializable {
 
 	public void setEmpStatus(Integer empStatus) {
 		this.empStatus = empStatus;
+	}
+
+	public Set getProductivities() {
+		return this.productivities;
+	}
+
+	public void setProductivities(Set productivities) {
+		this.productivities = productivities;
 	}
 
 	public Set getEmployeehistories() {

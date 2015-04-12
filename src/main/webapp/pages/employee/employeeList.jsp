@@ -27,15 +27,26 @@
 				});
 			}			
 		});
+		
+		$(".watch-productivity").on("click", function(){
+			$.ajax({
+			  url: "getProductivityByEmpId",
+			  data:{
+				  id:$(this).attr("id")
+			  }
+			}).done(function(html) {
+				openDialog("<div>"+html+"</div>", 300, 400);
+			});
+		});
 	});
 </script>
-<table class="table table-hover table-bordered">
+<table class="table table-hover">
 	<tr>
 		<th>No.</th>
 		<th>Full Name</th>
 		<th>Phone</th>
 		<th>Contact</th>
-		<th>Status</th>
+		<th>Productivity</th>
 		<th>Join Date</th>
 		<th>Skills</th>
 		<th>Avatar</th>
@@ -49,10 +60,14 @@
 			<td>${emp.empFullName}</td>
 			<td>${emp.empPhone}</td>
 			<td>${emp.empContact}</td>
-			<td>${emp.empStatus}</td>
+			<td>
+				<button class="btn btn-default watch-productivity" id="${emp.empId}">Watch</button>
+			</td>
 			<td>${emp.joinDate}</td>
 			<td>${emp.empSkills}</td>
-			<td>${emp.empAvatar}</td>
+			<td width="10%">
+				<img alt="preview-avatar" src="getImage/${emp.image.id}" class="img-thumbnail">
+			</td>
 			<td>${emp.division.divisionName}</td>
 			<td>${emp.team.teamName}</td>
 			<td><i class="glyphicon glyphicon-pencil edit-row-btn" id="${emp.empId}"></i></td>

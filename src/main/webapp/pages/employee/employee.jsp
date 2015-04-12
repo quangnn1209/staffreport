@@ -25,9 +25,13 @@
 		$('#fileupload').fileupload({
 	        dataType: 'json',
 	        done: function (e, data) {
-	            $.each(data.result.files, function (index, file) {
-	                $('<p/>').text(file.name).appendTo(document.body);
-	            });
+	        	if(data.result == 'null'){
+	        		$.jGrowl("Upload image failed!", "error");
+	        		return false;
+	        	}
+	        	
+	        	$("#preview-avatar").attr("src", "getImage/"+data.result.id);
+	        	reloadEmployeeList();
 	        },
 	        progressall: function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -45,7 +49,6 @@
 		<th>Full Name</th>
 		<th>Phone</th>
 		<th>Contact</th>
-		<th>Status</th>
 		<th>Join Date</th>
 		<th>Skills</th>
 		<th>Avatar</th>
@@ -56,10 +59,10 @@
 		<td><input type="hidden" name="empId" value="${emp.empId}"/><input type="text" class="form-control required-field" name="empFullName" value="${emp.empFullName}"></td>
 		<td><input type="text" class="form-control" name="empPhone" value="${emp.empPhone}"></td>
 		<td><input type="text" class="form-control" name="empContact" value="${emp.empContact}"></td>
-		<td><input type="text" class="form-control" name="empStatus" value="${emp.empStatus}"></td>
 		<td><input type="text" class="form-control required-field" name="joinDate" value="${emp.joinDate}" readonly="readonly"></td>
 		<td><input type="text" class="form-control" name="empSkills" value="${emp.empSkills}"></td>
-		<td>
+		<td width="10%">
+			<img alt="preview-avatar" src="getImage/${emp.image.id}" class="img-responsive" id="preview-avatar">			
 			<input id="fileupload" type="file" name="content" data-url="uploadFile">
 			<div id="progress">
 			    <div class="bar" style="width: 0%;"></div>

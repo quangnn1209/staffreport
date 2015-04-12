@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Jan 27, 2015 2:55:26 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Jan 28, 2015 1:37:42 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.seta.staffreport.persisted.File" table="file" catalog="staffreport">
         <id name="id" type="java.lang.Integer">
@@ -9,10 +9,13 @@
             <generator class="identity" />
         </id>
         <property name="fileName" type="string">
-            <column name="file_name" length="50" not-null="true" />
+            <column name="file_name" length="100" not-null="true" />
         </property>
         <property name="content" type="binary">
             <column name="content" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="50" />
         </property>
         <set name="images" table="image" inverse="true" lazy="true" fetch="select">
             <key>

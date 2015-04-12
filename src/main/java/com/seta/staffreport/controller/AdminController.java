@@ -11,7 +11,7 @@ import com.seta.staffreport.common.Constant;
 import com.seta.staffreport.persisted.Admin;
 
 @Controller
-public class AdminController {
+public class AdminController extends BaseController {
 	@RequestMapping(value = "doLogin", method = RequestMethod.POST)
 	public String doLogin(Admin admin, HttpServletRequest request) {
 		admin = AdminHelper.doLogin(admin);

@@ -15,15 +15,16 @@ import com.seta.staffreport.hibernate.HibernateUtility;
 import com.seta.staffreport.persisted.Employees;
 
 public class EmployeeHelper {
-	public static Employees getPersistantObject(Employees Employees) {
+	public static Employees getPersistantObject(Employees employee) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory().openSession();
 			transaction = hibernateSession.beginTransaction();
-			Employees = (Employees) hibernateSession.get(Employees.class, Employees.getEmpId());
-			Hibernate.initialize(Employees.getDivision());
-			Hibernate.initialize(Employees.getTeam());
+			employee = (Employees) hibernateSession.get(Employees.class, employee.getEmpId());
+			Hibernate.initialize(employee.getDivision());
+			Hibernate.initialize(employee.getTeam());
+			Hibernate.initialize(employee.getImage());
 
 			transaction.commit();
 		} catch (Exception e) {
@@ -33,16 +34,16 @@ public class EmployeeHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return Employees;
+		return employee;
 	}
 
-	public static long saveOrUpdate(Employees Employees) {
+	public static long saveOrUpdate(Employees employee) {
 		Session hibernateSession = null;
 		Transaction transaction = null;
 		try {
 			hibernateSession = HibernateUtility.getSessionFactory().openSession();
 			transaction = hibernateSession.beginTransaction();
-			hibernateSession.saveOrUpdate(Employees);
+			hibernateSession.saveOrUpdate(employee);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null)
@@ -51,7 +52,7 @@ public class EmployeeHelper {
 		} finally {
 			hibernateSession.close();
 		}
-		return Employees.getEmpId();
+		return employee.getEmpId();
 	}
 
 	@SuppressWarnings("unchecked")

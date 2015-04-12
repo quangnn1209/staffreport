@@ -1,6 +1,6 @@
 package com.seta.staffreport.persisted;
 
-// Generated Jan 27, 2015 2:55:26 PM by Hibernate Tools 3.4.0.CR1
+// Generated Jan 28, 2015 1:37:42 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,18 +16,24 @@ public class File implements java.io.Serializable {
 	private Integer id;
 	private String fileName;
 	private byte[] content;
+	private String type;
 	private Set images = new HashSet(0);
 
 	public File() {
+	}
+
+	public File(Integer id) {
+		this.id = id;
 	}
 
 	public File(String fileName) {
 		this.fileName = fileName;
 	}
 
-	public File(String fileName, byte[] content, Set images) {
+	public File(String fileName, byte[] content, String type, Set images) {
 		this.fileName = fileName;
 		this.content = content;
+		this.type = type;
 		this.images = images;
 	}
 
@@ -53,6 +59,14 @@ public class File implements java.io.Serializable {
 
 	public void setContent(byte[] content) {
 		this.content = content;
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public Set getImages() {

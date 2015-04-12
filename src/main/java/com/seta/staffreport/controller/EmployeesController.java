@@ -15,7 +15,7 @@ import com.seta.staffreport.common.TeamHelper;
 import com.seta.staffreport.persisted.Employees;
 
 @Controller
-public class EmployeesController {
+public class EmployeesController extends BaseController {
 	@RequestMapping(value = "getEmployees", method = RequestMethod.POST)
 	public ModelAndView getEmployees(@RequestBody Employees employee) {
 		ModelAndView mav = new ModelAndView("employees");
@@ -48,7 +48,11 @@ public class EmployeesController {
 		if (employees.getEmpFullName() == null || employees.getEmpFullName().isEmpty()) {
 			return "Please fill up all required fields!";
 		}
-
+		if (employees.getEmpId() != null) {
+			Employees oldEmp = new Employees(employees.getEmpId());
+			oldEmp = EmployeeHelper.getPersistantObject(oldEmp);
+			employees.setImage(oldEmp.getImage());
+		}
 		// Save
 		if (EmployeeHelper.saveOrUpdate(employees) > 0) {
 			return "Update employee succesful!";
